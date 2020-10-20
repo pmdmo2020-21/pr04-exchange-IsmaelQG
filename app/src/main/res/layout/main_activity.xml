@@ -16,7 +16,10 @@
         android:id="@+id/txtAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/padding">
+        android:inputType="numberDecimal"
+        android:layout_marginBottom="@dimen/padding"
+        android:text="0"
+        android:gravity="right">
     </EditText>
     <TextView
         android:id="@+id/lblFromCurrency"
@@ -43,11 +46,13 @@
             android:id="@+id/rdbFromCurrencyPound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/rdbCurrencyPound"/>
         <ImageView
             android:id="@+id/imgFromCurrency"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
     </RadioGroup>
     <TextView
         android:id="@+id/lblToCurrency"
@@ -74,11 +79,13 @@
             android:id="@+id/rdbToCurrencyPound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/rdbCurrencyPound"/>
         <ImageView
             android:id="@+id/imgToCurrency"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
     </RadioGroup>
     <Button
         android:id="@+id/btnExchange"
