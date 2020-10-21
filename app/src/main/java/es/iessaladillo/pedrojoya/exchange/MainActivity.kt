@@ -22,6 +22,12 @@ import es.iessaladillo.pedrojoya.exchange.databinding.MainActivityBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding
+    private var idFromCurrency = R.id.rdbFromCurrencyEuro
+    private var idToCurrency = R.id.rdbToCurrencyDollar
+    private var symbolFromCurrency = Currency.EURO.symbol
+    private var symbolToCurrency = Currency.DOLLAR.symbol
+    private var initValue = 0.0
+    private var convValue = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +58,10 @@ class MainActivity : AppCompatActivity() {
                     binding.txtAmount.text = toEditable("0")
                     binding.txtAmount.selectAll()
                 }
+                if(binding.txtAmount.hasFocus()){
+                    binding.txtAmount.selectAll()
+                }
+                initValue= binding.txtAmount.text.toString().toDouble()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -69,24 +79,28 @@ class MainActivity : AppCompatActivity() {
     private fun changeFromCurrencyCheckImg(idButton : Int){
         when(idButton){
             R.id.rdbFromCurrencyDollar -> {
-                binding.imgFromCurrency.setImageResource(R.drawable.ic_dollar)
+                binding.imgFromCurrency.setImageResource(Currency.DOLLAR.drawableResId)
                 binding.rdbToCurrencyDollar.isEnabled = false
                 binding.rdbToCurrencyEuro.isEnabled = true
                 binding.rdbToCurrencyPound.isEnabled = true
+                symbolFromCurrency=Currency.DOLLAR.symbol;
             }
             R.id.rdbFromCurrencyEuro -> {
-                binding.imgFromCurrency.setImageResource(R.drawable.ic_euro)
+                binding.imgFromCurrency.setImageResource(Currency.EURO.drawableResId)
                 binding.rdbToCurrencyDollar.isEnabled = true
                 binding.rdbToCurrencyEuro.isEnabled = false
                 binding.rdbToCurrencyPound.isEnabled = true
+                symbolFromCurrency=Currency.EURO.symbol;
             }
             R.id.rdbFromCurrencyPound -> {
-                binding.imgFromCurrency.setImageResource(R.drawable.ic_pound)
+                binding.imgFromCurrency.setImageResource(Currency.POUND.drawableResId)
                 binding.rdbToCurrencyDollar.isEnabled = true
                 binding.rdbToCurrencyEuro.isEnabled = true
                 binding.rdbToCurrencyPound.isEnabled = false
+                symbolFromCurrency=Currency.POUND.symbol;
             }
         }
+        idFromCurrency = idButton
     }
 
     private fun toCurrencyCheck(){
@@ -96,25 +110,38 @@ class MainActivity : AppCompatActivity() {
     private fun changeToCurrencyCheckImg(idButton : Int){
         when(idButton){
             R.id.rdbToCurrencyDollar -> {
-                binding.imgToCurrency.setImageResource(R.drawable.ic_dollar)
+                binding.imgToCurrency.setImageResource(Currency.DOLLAR.drawableResId)
                 binding.rdbFromCurrencyDollar.isEnabled = false
                 binding.rdbFromCurrencyEuro.isEnabled = true
                 binding.rdbFromCurrencyPound.isEnabled = true
+                symbolToCurrency=Currency.DOLLAR.symbol
             }
             R.id.rdbToCurrencyEuro -> {
-                binding.imgToCurrency.setImageResource(R.drawable.ic_euro)
+                binding.imgToCurrency.setImageResource(Currency.EURO.drawableResId)
                 binding.rdbFromCurrencyDollar.isEnabled = true
                 binding.rdbFromCurrencyEuro.isEnabled = false
                 binding.rdbFromCurrencyPound.isEnabled = true
+                symbolToCurrency=Currency.EURO.symbol
+                convValue=Currency.EURO.fromDollar()
             }
             R.id.rdbToCurrencyPound -> {
-                binding.imgToCurrency.setImageResource(R.drawable.ic_pound)
+                binding.imgToCurrency.setImageResource(Currency.POUND.drawableResId)
                 binding.rdbFromCurrencyDollar.isEnabled = true
                 binding.rdbFromCurrencyEuro.isEnabled = true
                 binding.rdbFromCurrencyPound.isEnabled = false
+                symbolToCurrency=Currency.POUND.symbol
             }
         }
+        idToCurrency = idButton
+
     }
 
+    private fun button(){
+        binding.btnExchange.setOnClickListener(){ v -> calc()}
+    }
+
+    private fun calc(){
+
+    }
 
 }
