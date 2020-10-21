@@ -85,6 +85,13 @@ class MainActivity : AppCompatActivity() {
                 binding.txtAmount.selectAll()
             }
         })
+        binding.txtAmount.setOnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                binding.lblAmount.setTextColor(resources.getColor(R.color.pink_200))
+            } else {
+                binding.lblAmount.setTextColor(resources.getColor(R.color.design_default_color_on_primary))
+            }
+        }
     }
 
 
@@ -168,11 +175,11 @@ class MainActivity : AppCompatActivity() {
             R.id.rdbToCurrencyEuro -> convValue = Currency.EURO.fromDollar(dollar)
             R.id.rdbToCurrencyPound -> convValue = Currency.POUND.fromDollar(dollar)
         }
-        Toast.makeText(this,
-            initValue.toString().plus(symbolFromCurrency).plus(" = ").plus(String.format(
-                "%.2f",
-                convValue)).plus(symbolToCurrency),
-            Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.format("%.2f", initValue)
+                                    .plus(symbolFromCurrency)
+                                    .plus(" = ")
+                                    .plus(String.format("%.2f", convValue))
+                                    .plus(symbolToCurrency), Toast.LENGTH_SHORT).show()
     }
 
 }
