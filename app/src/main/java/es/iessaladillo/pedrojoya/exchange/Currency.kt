@@ -14,12 +14,12 @@ enum class Currency(
 
     // TODO: Method to convert the currency to dollar.
     fun toDollar(amount: Double): Double{
-        return amount%asDollar
+        return amount*asDollar
     }
 
     // TODO: Method to convert a dollar to the currency
     fun fromDollar(amount: Double): Double{
-        return amount*asDollar
+        return amount/asDollar
     }
 
 }

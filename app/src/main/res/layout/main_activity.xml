@@ -19,7 +19,9 @@
         android:inputType="numberDecimal"
         android:layout_marginBottom="@dimen/padding"
         android:text="0"
-        android:gravity="right">
+        android:gravity="right"
+        android:selectAllOnFocus="true"
+        android:imeOptions="actionDone">
     </EditText>
     <TextView
         android:id="@+id/lblFromCurrency"
